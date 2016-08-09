@@ -32,6 +32,15 @@ var (
     }
 )
 
+func GetBranch(val int) string {
+    name, ok := branchNameMap[val]
+    if !ok {
+        return "LOCAL"
+    }
+
+    return name
+}
+
 func GetPlatform() (string, error) {
     os, ok := osNameMap[runtime.GOOS]
     if !ok {
