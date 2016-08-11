@@ -14,6 +14,12 @@ const (
 
 // name mappings
 var (
+    branchMap = map[string]int{
+        "Local":   LOCAL,
+        "Main":    MAIN,
+        "Release": RELEASE,
+    }
+
     branchNameMap = map[int]string{
         LOCAL:   "Local",
         MAIN:    "Main",
@@ -39,6 +45,15 @@ func GetBranch(val int) string {
     }
 
     return name
+}
+
+func GetBranchName(val string) int {
+    id, ok := branchMap[val]
+    if !ok {
+        return LOCAL
+    }
+
+    return id
 }
 
 func GetPlatform() (string, error) {
