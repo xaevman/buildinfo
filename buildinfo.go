@@ -3,6 +3,7 @@ package buildinfo
 import (
     "fmt"
     "runtime"
+    "strings"
 )
 
 // branch enum
@@ -15,9 +16,9 @@ const (
 // name mappings
 var (
     branchMap = map[string]int{
-        "Local":   LOCAL,
-        "Main":    MAIN,
-        "Release": RELEASE,
+        "local":   LOCAL,
+        "main":    MAIN,
+        "release": RELEASE,
     }
 
     branchNameMap = map[int]string{
@@ -38,7 +39,7 @@ var (
     }
 )
 
-func GetBranch(val int) string {
+func GetBranchName(val int) string {
     name, ok := branchNameMap[val]
     if !ok {
         return "LOCAL"
@@ -47,8 +48,8 @@ func GetBranch(val int) string {
     return name
 }
 
-func GetBranchName(val string) int {
-    id, ok := branchMap[val]
+func GetBranch(val string) int {
+    id, ok := branchMap[strings.ToLower(val)]
     if !ok {
         return LOCAL
     }
